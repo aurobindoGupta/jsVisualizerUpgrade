@@ -2,26 +2,32 @@
   "name": "js-visualizer-client",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@material-ui/core": "^3.9.1",
-    "@material-ui/icons": "^3.0.2",
-    "brace": "^0.11.1",
-    "react": "^16.13.0",
-    "react-ace": "^6.3.2",
-    "react-dom": "^16.13.0",
-    "react-measure": "^2.2.4",
-    "react-pose": "^4.0.6",
-    "react-scripts": "2.1.8",
-    "uuid": "^3.3.2"
-  },
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "ace-builds": "^1.36.0",
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-ace": "^11.0.1",
+    "react-dom": "^18.3.1",
+    "sonner": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
   },
   "browserslist": [
     ">0.2%",

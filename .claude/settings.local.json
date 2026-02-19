@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:latentflip.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:www.lydiahallie.com)"
     ]
   }
 }
