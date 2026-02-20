@@ -1,9 +1,9 @@
 import type { ExecutionEvent } from '../types';
 
 const WS_URL =
-  import.meta.env.MODE === 'production'
-    ? 'wss://js-visualizer-9000-server.herokuapp.com'
-    : 'ws://localhost:8080';
+  import.meta.env.MODE === "production"
+    ? "wss://jsvisualizerupgrade-server-production.up.railway.app"
+    : "ws://localhost:8080";
 
 export const fetchEventsForCode = (code: string): Promise<ExecutionEvent[]> =>
   new Promise((resolve, reject) => {
