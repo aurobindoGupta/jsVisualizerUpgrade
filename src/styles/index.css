@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .scroll-on-hover-x {
   overflow: hidden;
 }
@@ -16,5 +20,5 @@
 
 .hide-when-screen-shrinks {
   flex: 1;
-  display: auto;
+  display: flex;
 }
