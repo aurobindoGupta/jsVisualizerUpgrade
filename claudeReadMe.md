@@ -205,6 +205,33 @@ A full modernization of the client codebase carried out by Claude Code. All chan
 
 ---
 
+---
+
+## Phase 14 — Loupe-Inspired Improvements + Loader Fix
+
+137. Fixed the spinner drift bug in `src/components/RunOrEditButton.tsx`: replaced the raw `<Loader2>` element positioned with `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2` with a wrapper `<div className="absolute inset-0 flex items-center justify-center pointer-events-none">` containing the icon. The root cause was SVG's default `display: inline` interacting with the baseline alignment rules of the `inline-flex` parent, causing the 50% anchor to shift south-east.
+138. Changed `CallStack.tsx` panel background from `bg-yellow-400` to `bg-sky-200` (light blue) to visually distinguish the call stack from other panels.
+139. Added an optional `color` prop (Tailwind class string, defaulting to `bg-yellow-400`) to `TaskQueue.tsx`, replacing the hardcoded yellow background so each queue instance can have its own color.
+140. Updated `AppRoot.tsx` to pass `color="bg-orange-200"` to the Task Queue instance and `color="bg-violet-200"` to the Microtask Queue instance, giving each a distinct warm-orange and light-purple appearance respectively.
+141. Changed `ExecutionModelStepper.tsx` panel background from `bg-yellow-400` to `bg-emerald-200` (light green), making the Event Loop stepper immediately identifiable.
+142. Added the `ConsoleEntry` interface (`{ type: 'log' | 'warn' | 'error'; message: string }`) to `src/types/index.ts`.
+143. Added `consoleLogs: ConsoleEntry[]` state (initialised to `[]`) to `useEventPlayback.ts`.
+144. Updated `playNextEvent` in `useEventPlayback.ts` so that `ConsoleLog`, `ConsoleWarn`, `ConsoleError`, and `ErrorFunction` events push an entry to `consoleLogs` in addition to showing a Sonner toast.
+145. Updated `resetVisualization` in `useEventPlayback.ts` to clear `consoleLogs` back to `[]` whenever a new run starts.
+146. Exposed `consoleLogs` from the `useEventPlayback` hook return value.
+147. Created `src/components/ConsolePanel.tsx`: a persistent dark terminal-style panel (`bg-gray-900`) with a "Console" header bar. Each log entry is color-coded — `text-gray-300` for log, `text-amber-400` for warn, `text-red-400` for error — and prefixed with `> `. The panel has a fixed height with `overflow-y-auto` and auto-scrolls to the latest entry via a `useEffect` + `useRef` on a sentinel `<div>` at the bottom. An italic placeholder message is shown when no entries exist yet.
+148. Threaded `consoleLogs` from `useEventPlayback` through `App.tsx` down to `AppRoot.tsx` as a new prop.
+149. Added `ConsolePanel` to `AppRoot.tsx`, rendered below `<CodeEditor>` and above `<Attribution>` in the left panel.
+150. Changed the auto-play delay in `useEventPlayback.ts` from `500ms` to `800ms` for a pace that is slow enough to follow visually.
+151. Updated `runCode()` in `useEventPlayback.ts` to call `autoPlayEvents()` immediately after switching to `visualizing` mode, so the animation starts automatically the moment code finishes fetching — no manual button press required.
+152. Redesigned `src/components/FabControls.tsx`: removed the Auto Step button (no longer needed since auto-play starts automatically) and replaced it with four context-aware buttons — **Pause** (yellow, visible while auto-playing), **Resume** (blue, visible when paused and not at end), **Step** (green, visible when paused), and **Stop** (red, always visible while visualizing). Stop returns the app to editing mode. Added `StopCircle` from Lucide React.
+153. Updated `AppRoot.tsx` props interface: removed `onClickAutoStep` and `onClickStepBack`; added `onClickResume` and `onClickStop`.
+154. Updated `App.tsx`: removed the `onClickAutoStep` and `onClickStepBack` prop passes; added `onClickResume={autoPlay}` and `onClickStop={transitionToEdit}` to `<AppRoot>`.
+155. Ran `npx tsc --noEmit` — zero type errors after all Phase 14 changes.
+156. Ran `npx vite build` — production build succeeded.
+
+---
+
 ## Summary of Files Created
 
 - `vite.config.ts`
@@ -238,6 +265,7 @@ A full modernization of the client codebase carried out by Claude Code. All chan
 - `src/components/TaskQueue.tsx`
 - `src/components/FabControls.tsx`
 - `src/components/ExecutionModelStepper.tsx`
+- `src/components/ConsolePanel.tsx`
 
 ## Summary of Files Deleted
 

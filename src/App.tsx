@@ -33,6 +33,7 @@ export default function App() {
     mode,
     isAutoPlaying,
     currentStep,
+    consoleLogs,
     hasReachedEnd,
     runCode,
     stepNext,
@@ -88,6 +89,7 @@ export default function App() {
         showMicrotaskQueueDescription={showMicrotaskQueueDescription}
         hasReachedEnd={hasReachedEnd}
         currentStep={currentStep}
+        consoleLogs={consoleLogs}
         onChangeVisiblePanel={handleChangeVisiblePanel}
         onCloseDrawer={() => setIsDrawerOpen(false)}
         onOpenDrawer={() => setIsDrawerOpen(true)}
@@ -96,8 +98,8 @@ export default function App() {
         onClickRun={() => runCode(code)}
         onClickEdit={transitionToEdit}
         onClickPauseAutoStep={pauseAutoPlay}
-        onClickAutoStep={autoPlay}
-        onClickStepBack={() => {}}
+        onClickResume={autoPlay}
+        onClickStop={transitionToEdit}
         onClickStep={stepNext}
         onShowCallStackDescription={() => setShowCallStackDescription(true)}
         onHideCallStackDescription={() => setShowCallStackDescription(false)}

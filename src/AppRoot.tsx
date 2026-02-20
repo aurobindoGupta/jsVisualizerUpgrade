@@ -15,6 +15,7 @@ import EventLoopDescription from './components/EventLoopDescription';
 import TaskQueueDescription from './components/TaskQueueDescription';
 import MicrotaskQueueDescription from './components/MicrotaskQueueDescription';
 import Attribution from './components/Attribution';
+import ConsolePanel from './components/ConsolePanel';
 import type {
   AppMode,
   EventLoopStep,
@@ -23,6 +24,7 @@ import type {
   Microtask,
   CodeMarker,
   VisiblePanels,
+  ConsoleEntry,
 } from './types';
 
 interface AppRootProps {
@@ -42,6 +44,7 @@ interface AppRootProps {
   showMicrotaskQueueDescription: boolean;
   hasReachedEnd: boolean;
   currentStep: EventLoopStep;
+  consoleLogs: ConsoleEntry[];
   onChangeVisiblePanel: (panel: keyof VisiblePanels) => () => void;
   onCloseDrawer: () => void;
   onOpenDrawer: () => void;
@@ -50,8 +53,8 @@ interface AppRootProps {
   onClickRun: () => void;
   onClickEdit: () => void;
   onClickPauseAutoStep: () => void;
-  onClickAutoStep: () => void;
-  onClickStepBack: () => void;
+  onClickResume: () => void;
+  onClickStop: () => void;
   onClickStep: () => boolean;
   onShowCallStackDescription: () => void;
   onHideCallStackDescription: () => void;
@@ -80,6 +83,7 @@ const AppRoot = ({
   showMicrotaskQueueDescription,
   hasReachedEnd,
   currentStep,
+  consoleLogs,
   onChangeVisiblePanel,
   onCloseDrawer,
   onOpenDrawer,
@@ -88,8 +92,8 @@ const AppRoot = ({
   onClickRun,
   onClickEdit,
   onClickPauseAutoStep,
-  onClickAutoStep,
-  onClickStepBack,
+  onClickResume,
+  onClickStop,
   onClickStep,
   onShowCallStackDescription,
   onHideCallStackDescription,
@@ -131,6 +135,7 @@ const AppRoot = ({
         locked={mode !== 'editing'}
         onChangeCode={onChangeCode}
       />
+      <ConsolePanel consoleLogs={consoleLogs} />
       <Attribution />
     </div>
 
@@ -142,6 +147,7 @@ const AppRoot = ({
             title="Task Queue"
             tasks={tasks}
             onClickAbout={onShowTaskQueueDescription}
+            color="bg-orange-200"
           />
         )}
         {visiblePanels.microtaskQueue && (
@@ -149,6 +155,7 @@ const AppRoot = ({
             title="Microtask Queue"
             tasks={microtasks}
             onClickAbout={onShowMicrotaskQueueDescription}
+            color="bg-violet-200"
           />
         )}
       </div>
@@ -173,8 +180,8 @@ const AppRoot = ({
       isAutoPlaying={isAutoPlaying}
       hasReachedEnd={hasReachedEnd}
       onClickPauseAutoStep={onClickPauseAutoStep}
-      onClickAutoStep={onClickAutoStep}
-      onClickStepBack={onClickStepBack}
+      onClickResume={onClickResume}
+      onClickStop={onClickStop}
       onClickStep={onClickStep}
     />
 

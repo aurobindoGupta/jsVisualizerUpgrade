@@ -45,6 +45,11 @@ export interface ExecutionEvent {
   payload: ExecutionEventPayload;
 }
 
+export interface ConsoleEntry {
+  type: 'log' | 'warn' | 'error';
+  message: string;
+}
+
 export interface VisiblePanels {
   taskQueue: boolean;
   microtaskQueue: boolean;

@@ -6,7 +6,9 @@
       "WebFetch(domain:latentflip.com)",
       "WebFetch(domain:github.com)",
       "WebSearch",
-      "WebFetch(domain:www.lydiahallie.com)"
+      "WebFetch(domain:www.lydiahallie.com)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite build)"
     ]
   }
 }

@@ -12,7 +12,7 @@ interface CallStackProps {
 }
 
 const CallStack = ({ frames, onClickAbout }: CallStackProps) => (
-  <div className="m-2 flex flex-col bg-yellow-400 rounded-lg shadow-sm min-w-[230px] max-w-[230px] flex-1 overflow-hidden">
+  <div className="m-2 flex flex-col bg-sky-200 rounded-lg shadow-sm min-w-[230px] max-w-[230px] flex-1 overflow-hidden">
     <div className="p-2">
       <CardHeaderWithAbout title="Call Stack" onClickAbout={onClickAbout} />
     </div>

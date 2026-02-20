@@ -10,10 +10,11 @@ interface TaskQueueProps {
   title: string;
   tasks: (Task | Microtask)[];
   onClickAbout: () => void;
+  color?: string;
 }
 
-const TaskQueue = ({ title, tasks, onClickAbout }: TaskQueueProps) => (
-  <div className="m-2 flex flex-col bg-yellow-400 rounded-lg shadow-sm h-[120px] max-h-[140px] overflow-hidden">
+const TaskQueue = ({ title, tasks, onClickAbout, color = 'bg-yellow-400' }: TaskQueueProps) => (
+  <div className={`m-2 flex flex-col ${color} rounded-lg shadow-sm h-[120px] max-h-[140px] overflow-hidden`}>
     <div className="px-2 pt-2">
       <CardHeaderWithAbout
         title={title}

@@ -27,10 +27,9 @@ const RunOrEditButton = ({
           <Send size={16} />
         </button>
         {mode === 'running' && (
-          <Loader2
-            size={24}
-            className="animate-spin text-yellow-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-          />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <Loader2 size={24} className="animate-spin text-yellow-400" />
+          </div>
         )}
       </div>
     ) : (

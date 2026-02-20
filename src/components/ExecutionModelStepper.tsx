@@ -49,7 +49,7 @@ const ExecutionModelStepper = ({
   const currentIdx = STEP_ORDER.indexOf(step);
 
   return (
-    <div className="m-2 flex flex-col bg-yellow-400 rounded-lg shadow-sm flex-1 max-w-xs overflow-y-auto">
+    <div className="m-2 flex flex-col bg-emerald-200 rounded-lg shadow-sm flex-1 max-w-xs overflow-y-auto">
       <div className="p-2">
         <CardHeaderWithAbout title="Event Loop" onClickAbout={onClickAbout} />
       </div>

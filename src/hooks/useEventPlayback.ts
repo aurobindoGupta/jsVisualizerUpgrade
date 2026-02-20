@@ -8,6 +8,7 @@ import type {
   AppMode,
   EventLoopStep,
   ExecutionEvent,
+  ConsoleEntry,
 } from '../types';
 import { fetchEventsForCode } from '../utils/events';
 
@@ -36,6 +37,7 @@ export function useEventPlayback() {
   const [mode, setMode] = useState<AppMode>('editing');
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState<EventLoopStep>('none');
+  const [consoleLogs, setConsoleLogs] = useState<ConsoleEntry[]>([]);
 
   // Mutable refs — not state — so they can be read inside async loops
   // without stale closure issues
@@ -84,13 +86,25 @@ export function useEventPlayback() {
 
     const { type, payload } = event;
 
-    if (type === 'ConsoleLog') toast(payload.message ?? '');
-    if (type === 'ConsoleWarn') toast.warning(payload.message ?? '');
-    if (type === 'ConsoleError') toast.error(payload.message ?? '');
+    if (type === 'ConsoleLog') {
+      const msg = payload.message ?? '';
+      toast(msg);
+      setConsoleLogs((prev) => [...prev, { type: 'log', message: msg }]);
+    }
+    if (type === 'ConsoleWarn') {
+      const msg = payload.message ?? '';
+      toast.warning(msg);
+      setConsoleLogs((prev) => [...prev, { type: 'warn', message: msg }]);
+    }
+    if (type === 'ConsoleError') {
+      const msg = payload.message ?? '';
+      toast.error(msg);
+      setConsoleLogs((prev) => [...prev, { type: 'error', message: msg }]);
+    }
     if (type === 'ErrorFunction') {
-      toast.error(
-        `Uncaught Exception in "${payload.name}": ${payload.message}`
-      );
+      const msg = `Uncaught Exception in "${payload.name}": ${payload.message}`;
+      toast.error(msg);
+      setConsoleLogs((prev) => [...prev, { type: 'error', message: msg }]);
     }
     if (type === 'EnterFunction') {
       setMarkers((prev) => prev.concat({ start: payload.start!, end: payload.end! }));
@@ -155,7 +169,7 @@ export function useEventPlayback() {
         setAutoPlayingSync(false);
         break;
       }
-      await pause(500);
+      await pause(800);
     }
   }
 
@@ -164,6 +178,7 @@ export function useEventPlayback() {
     setTasks([]);
     setMicrotasks([]);
     setMarkers([]);
+    setConsoleLogs([]);
     setAutoPlayingSync(false);
     setCurrentStep('none');
   }
@@ -177,6 +192,7 @@ export function useEventPlayback() {
       eventsRef.current = fetchedEvents;
       setModeSync('visualizing');
       setCurrentStep('evaluateScript');
+      autoPlayEvents();
     } catch (e) {
       currEventIdx.current = 0;
       toast.error((e as Error).message);
@@ -198,6 +214,7 @@ export function useEventPlayback() {
     mode,
     isAutoPlaying,
     currentStep,
+    consoleLogs,
     hasReachedEnd: hasReachedEnd(),
     runCode,
     stepNext: playNextEvent,
