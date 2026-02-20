@@ -8,12 +8,12 @@ interface HeaderProps {
 const Header = ({ onClickLogo }: HeaderProps) => (
   <div className="flex flex-row items-center">
     <img
-      className="w-10 my-1.5 mx-4 cursor-pointer shadow-sm"
+      className="w-12 my-1.5 mx-4 cursor-pointer shadow-sm"
       src={JavaScriptLogo}
       alt=""
       onClick={onClickLogo}
     />
-    <h1 className="text-xl font-semibold">JavaScript Visualizer 10000</h1>
+    <h1 className="text-2xl font-semibold">JavaScript Visualizer 10000</h1>
   </div>
 );
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Attribution = () => (
-  <p className="text-sm mb-2 text-center">
+  <p className="text-base mb-2 text-center">
     Built by{' '}
     <a
       className="text-blue-500 hover:underline"

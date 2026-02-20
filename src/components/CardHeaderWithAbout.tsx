@@ -12,9 +12,9 @@ const CardHeaderWithAbout = ({
   onClickAbout,
 }: CardHeaderWithAboutProps) => (
   <div className="flex flex-row items-center justify-between p-0">
-    <span className="font-semibold text-base px-2">{title}</span>
+    <span className="font-semibold text-lg px-2">{title}</span>
     <button
-      className={`text-sm px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors${
+      className={`text-base px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors${
         slideButtonLeft ? ' mr-6' : ''
       }`}
       onClick={onClickAbout}

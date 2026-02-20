@@ -31,7 +31,7 @@ const TaskQueue = ({ title, tasks, onClickAbout, color = 'bg-yellow-400' }: Task
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -200, opacity: 0 }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="inline-flex items-center justify-center min-w-[125px] px-2 py-1 m-1 rounded shadow-sm text-sm font-medium shrink-0"
+            className="inline-flex items-center justify-center min-w-[125px] px-2 py-1 m-1 rounded shadow-sm text-base font-medium shrink-0"
             style={{ backgroundColor: pastels[idx % pastels.length] }}
           >
             {name}

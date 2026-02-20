@@ -19,11 +19,11 @@ const ConsolePanel = ({ consoleLogs }: ConsolePanelProps) => {
   }, [consoleLogs]);
 
   return (
-    <div className="mx-2 mb-1 bg-gray-900 rounded-lg shadow-sm overflow-hidden flex flex-col h-[120px]">
-      <div className="px-2 py-1 bg-gray-800 text-gray-400 text-xs font-mono font-semibold shrink-0">
+    <div className="mx-2 mb-1 bg-gray-900 rounded-lg shadow-sm overflow-hidden flex flex-col h-[140px]">
+      <div className="px-2 py-1 bg-gray-800 text-gray-400 text-sm font-mono font-semibold shrink-0">
         Console
       </div>
-      <div className="flex-1 overflow-y-auto px-2 py-1 font-mono text-xs">
+      <div className="flex-1 overflow-y-auto px-2 py-1 font-mono text-sm">
         {consoleLogs.length === 0 ? (
           <span className="text-gray-600 italic">Console output will appear here...</span>
         ) : (

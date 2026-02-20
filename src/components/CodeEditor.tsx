@@ -50,7 +50,7 @@ const CodeEditor = ({
   <div className="m-2 p-2 bg-yellow-400 rounded-lg flex flex-1 shadow-sm overflow-hidden">
     <AceEditor
       style={{
-        maxWidth: 500,
+        width: '100%',
         height: '100%',
         marginLeft: -8,
         marginRight: -8,
@@ -61,7 +61,7 @@ const CodeEditor = ({
       theme="solarized_light"
       onChange={onChangeCode}
       name="code-editor"
-      fontSize={14}
+      fontSize={16}
       tabSize={2}
       markers={markers.map(({ start, end }, idx) => ({
         startRow: convertCodeIndexToRowCol(code, start).row,
@@ -73,7 +73,7 @@ const CodeEditor = ({
       }))}
       showGutter
       highlightActiveLine={!locked}
-      editorProps={{ $blockScrolling: Infinity }}
+      editorProps={{ $blockScrolling: Infinity, useWorker: false }}
       focus
     />
   </div>

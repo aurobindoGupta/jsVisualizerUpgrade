@@ -49,7 +49,7 @@ const ExecutionModelStepper = ({
   const currentIdx = STEP_ORDER.indexOf(step);
 
   return (
-    <div className="m-2 flex flex-col bg-emerald-200 rounded-lg shadow-sm flex-1 max-w-xs overflow-y-auto">
+    <div className="m-2 flex flex-col bg-emerald-200 rounded-lg shadow-sm flex-1 w-full md:max-w-xs overflow-y-auto">
       <div className="p-2">
         <CardHeaderWithAbout title="Event Loop" onClickAbout={onClickAbout} />
       </div>
@@ -69,7 +69,7 @@ const ExecutionModelStepper = ({
               }`}
             >
               <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-colors ${
                   isActive
                     ? 'bg-blue-500 text-white'
                     : isCompleted
@@ -81,14 +81,14 @@ const ExecutionModelStepper = ({
               </div>
               <div>
                 <p
-                  className={`text-sm font-semibold ${
+                  className={`text-base font-semibold ${
                     isActive ? 'text-blue-800' : 'text-gray-800'
                   }`}
                 >
                   {s.label}
                 </p>
                 {isActive && (
-                  <p className="text-xs text-gray-600 mt-0.5">
+                  <p className="text-sm text-gray-600 mt-0.5">
                     {s.description}
                   </p>
                 )}

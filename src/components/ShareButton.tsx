@@ -32,7 +32,7 @@ const ShareButton = ({ code }: ShareButtonProps) => {
     <div className="relative">
       <button
         ref={buttonRef}
-        className="flex items-center gap-2 m-2 px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-md text-sm font-medium transition-colors"
+        className="flex items-center gap-2 m-2 px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-md text-base font-medium transition-colors"
         onClick={() => setOpen((v) => !v)}
       >
         Share
@@ -46,7 +46,7 @@ const ShareButton = ({ code }: ShareButtonProps) => {
             className="fixed inset-0 z-10"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute left-0 top-full mt-2 w-[38rem] z-20 bg-white rounded-lg shadow-lg border border-gray-200 p-3">
+          <div className="absolute left-0 top-full mt-2 w-[calc(100vw-2rem)] md:w-[38rem] z-20 bg-white rounded-lg shadow-lg border border-gray-200 p-3">
             <input
               ref={inputRef}
               type="text"

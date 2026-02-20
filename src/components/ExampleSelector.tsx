@@ -21,7 +21,7 @@ const ExampleSelector = ({
 }: ExampleSelectorProps) => (
   <form className="flex flex-wrap ml-2 w-full" autoComplete="off">
     <select
-      className="m-2 w-full min-w-[120px] px-3 py-2 border border-gray-300 rounded-md bg-white text-sm disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-400"
+      className="m-2 w-full min-w-[120px] px-3 py-2 border border-gray-300 rounded-md bg-white text-base disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-400"
       value={example}
       onChange={onChangeExample}
       disabled={locked}

@@ -104,103 +104,106 @@ const AppRoot = ({
   onShowMicrotaskQueueDescription,
   onHideMicrotaskQueueDescription,
 }: AppRootProps) => (
-  <div className="w-screen h-screen flex flex-row overflow-hidden bg-slate-100">
-    <Drawer
-      open={isDrawerOpen}
-      visiblePanels={visiblePanels}
-      onChange={onChangeVisiblePanel}
-      onClose={onCloseDrawer}
-    />
-
-    {/* Left panel */}
-    <div className="flex flex-col">
-      <Header onClickLogo={onOpenDrawer} />
-      <div className="flex flex-row items-center">
-        <ExampleSelector
-          example={example}
-          locked={mode === 'running'}
-          onChangeExample={onChangeExample}
-        />
-        <RunOrEditButton
-          mode={mode}
-          runDisabled={code.trim() === ''}
-          onClickRun={onClickRun}
-          onClickEdit={onClickEdit}
-        />
-        <ShareButton code={code} />
-      </div>
-      <CodeEditor
-        code={code}
-        markers={markers}
-        locked={mode !== 'editing'}
-        onChangeCode={onChangeCode}
+  <div className="w-screen min-h-screen md:h-screen bg-slate-100 flex justify-center overflow-x-hidden">
+    {/* Inner: max-width container with responsive layout */}
+    <div className="w-full max-w-[1440px] flex flex-col md:flex-row overflow-y-auto md:overflow-hidden md:h-full">
+      <Drawer
+        open={isDrawerOpen}
+        visiblePanels={visiblePanels}
+        onChange={onChangeVisiblePanel}
+        onClose={onCloseDrawer}
       />
-      <ConsolePanel consoleLogs={consoleLogs} />
-      <Attribution />
-    </div>
 
-    {/* Right panel */}
-    <div className="flex flex-col flex-1">
-      <div>
-        {visiblePanels.taskQueue && (
-          <TaskQueue
-            title="Task Queue"
-            tasks={tasks}
-            onClickAbout={onShowTaskQueueDescription}
-            color="bg-orange-200"
+      {/* Left panel */}
+      <div className="flex flex-col w-full md:w-[520px] md:shrink-0">
+        <Header onClickLogo={onOpenDrawer} />
+        <div className="flex flex-row items-center">
+          <ExampleSelector
+            example={example}
+            locked={mode === 'running'}
+            onChangeExample={onChangeExample}
           />
-        )}
-        {visiblePanels.microtaskQueue && (
-          <TaskQueue
-            title="Microtask Queue"
-            tasks={microtasks}
-            onClickAbout={onShowMicrotaskQueueDescription}
-            color="bg-violet-200"
+          <RunOrEditButton
+            mode={mode}
+            runDisabled={code.trim() === ''}
+            onClickRun={onClickRun}
+            onClickEdit={onClickEdit}
           />
-        )}
+          <ShareButton code={code} />
+        </div>
+        <CodeEditor
+          code={code}
+          markers={markers}
+          locked={mode !== 'editing'}
+          onChangeCode={onChangeCode}
+        />
+        <ConsolePanel consoleLogs={consoleLogs} />
+        <Attribution />
       </div>
-      <div className="flex flex-1 flex-row overflow-hidden">
-        {visiblePanels.callStack && (
-          <CallStack
-            frames={frames}
-            onClickAbout={onShowCallStackDescription}
-          />
-        )}
-        {visiblePanels.eventLoop && (
-          <ExecutionModelStepper
-            step={currentStep}
-            onClickAbout={onShowEventLoopDescription}
-          />
-        )}
+
+      {/* Right panel */}
+      <div className="flex flex-col flex-1">
+        <div>
+          {visiblePanels.taskQueue && (
+            <TaskQueue
+              title="Task Queue"
+              tasks={tasks}
+              onClickAbout={onShowTaskQueueDescription}
+              color="bg-orange-200"
+            />
+          )}
+          {visiblePanels.microtaskQueue && (
+            <TaskQueue
+              title="Microtask Queue"
+              tasks={microtasks}
+              onClickAbout={onShowMicrotaskQueueDescription}
+              color="bg-violet-200"
+            />
+          )}
+        </div>
+        <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
+          {visiblePanels.callStack && (
+            <CallStack
+              frames={frames}
+              onClickAbout={onShowCallStackDescription}
+            />
+          )}
+          {visiblePanels.eventLoop && (
+            <ExecutionModelStepper
+              step={currentStep}
+              onClickAbout={onShowEventLoopDescription}
+            />
+          )}
+        </div>
       </div>
+
+      <FabControls
+        visible={mode === 'visualizing'}
+        isAutoPlaying={isAutoPlaying}
+        hasReachedEnd={hasReachedEnd}
+        onClickPauseAutoStep={onClickPauseAutoStep}
+        onClickResume={onClickResume}
+        onClickStop={onClickStop}
+        onClickStep={onClickStep}
+      />
+
+      <CallStackDescription
+        open={showCallStackDescription}
+        onClose={onHideCallStackDescription}
+      />
+      <EventLoopDescription
+        open={showEventLoopDescription}
+        onClose={onHideEventLoopDescription}
+      />
+      <TaskQueueDescription
+        open={showTaskQueueDescription}
+        onClose={onHideTaskQueueDescription}
+      />
+      <MicrotaskQueueDescription
+        open={showMicrotaskQueueDescription}
+        onClose={onHideMicrotaskQueueDescription}
+      />
     </div>
-
-    <FabControls
-      visible={mode === 'visualizing'}
-      isAutoPlaying={isAutoPlaying}
-      hasReachedEnd={hasReachedEnd}
-      onClickPauseAutoStep={onClickPauseAutoStep}
-      onClickResume={onClickResume}
-      onClickStop={onClickStop}
-      onClickStep={onClickStep}
-    />
-
-    <CallStackDescription
-      open={showCallStackDescription}
-      onClose={onHideCallStackDescription}
-    />
-    <EventLoopDescription
-      open={showEventLoopDescription}
-      onClose={onHideEventLoopDescription}
-    />
-    <TaskQueueDescription
-      open={showTaskQueueDescription}
-      onClose={onHideTaskQueueDescription}
-    />
-    <MicrotaskQueueDescription
-      open={showMicrotaskQueueDescription}
-      onClose={onHideMicrotaskQueueDescription}
-    />
   </div>
 );
 

@@ -27,7 +27,10 @@ const FabControls = ({
   onClickResume,
   onClickStop,
 }: FabControlsProps) => (
-  <div className="fixed bottom-5 right-5 flex flex-col items-end gap-2">
+  <div
+    className="fixed bottom-5 flex flex-col items-end gap-2"
+    style={{ right: 'max(1.25rem, calc((100vw - 1440px) / 2 + 1.25rem))' }}
+  >
     <AnimatePresence>
       {/* Pause — shown while auto-playing */}
       {visible && isAutoPlaying && (

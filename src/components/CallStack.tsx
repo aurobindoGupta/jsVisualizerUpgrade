@@ -12,7 +12,7 @@ interface CallStackProps {
 }
 
 const CallStack = ({ frames, onClickAbout }: CallStackProps) => (
-  <div className="m-2 flex flex-col bg-sky-200 rounded-lg shadow-sm min-w-[230px] max-w-[230px] flex-1 overflow-hidden">
+  <div className="m-2 flex flex-col bg-sky-200 rounded-lg shadow-sm w-full h-[220px] md:h-auto md:min-w-[230px] md:max-w-[230px] md:flex-1 overflow-hidden">
     <div className="p-2">
       <CardHeaderWithAbout title="Call Stack" onClickAbout={onClickAbout} />
     </div>
@@ -25,7 +25,7 @@ const CallStack = ({ frames, onClickAbout }: CallStackProps) => (
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -200, opacity: 0 }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="w-[165px] h-[30px] flex items-center justify-center rounded shadow-sm text-sm font-medium my-1 mx-auto"
+            className="w-4/5 md:w-[165px] h-[30px] flex items-center justify-center rounded shadow-sm text-sm font-medium my-1 mx-auto"
             style={{ backgroundColor: getPastelForIndex(idx) }}
             aria-label={`Stack frame: ${name}`}
           >
