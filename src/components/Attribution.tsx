@@ -2,7 +2,7 @@ import React from 'react';
 
 const Attribution = () => (
   <p className="text-base mb-2 text-center">
-    Built by{' '}
+    Built by{" "}
     <a
       className="text-blue-500 hover:underline"
       href="https://github.com/Hopding/"
@@ -11,14 +11,14 @@ const Attribution = () => (
     >
       Aurobindo Gupta
     </a>
-    . Inspired by{' '}
+    . Inspired by{" "}
     <a
       className="text-blue-500 hover:underline"
-      href="http://latentflip.com/loupe/"
+      href="https://www.jsv9000.app/"
       target="_blank"
       rel="noreferrer"
     >
-      Loupe
+      JSV
     </a>
     .
   </p>
